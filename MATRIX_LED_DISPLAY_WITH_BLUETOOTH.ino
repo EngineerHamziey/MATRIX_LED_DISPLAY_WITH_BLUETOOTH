@@ -1,54 +1,43 @@
-#if 0
+/*
+  Scrolling alphabet demo, displays characters one at a time into a scrolling box.
+ */
 
 #include <SPI.h>
-#include <DMD.h>
-#include <TimerOne.h>
-#include "SystemFont5x7.h"
+#include <DMD2.h>
+#include <fonts/SystemFont5x7.h>
+// #include <fonts/Arial14.h>
 #include "Arial_black_16.h"
 
-// Define the number of panels
-#define noOfRow_panel 1
-#define noOfColumn_panel 3
+// Set Width to the number of displays wide you have
+const int WIDTH = 3;
 
-// Initialize the DMD object
-DMD p10(noOfRow_panel, noOfColumn_panel);
+// You can change to a smaller font (two lines) by commenting this line,
+// and uncommenting the line after it:
+// const uint8_t *FONT = Arial14;
+const uint8_t *FONT = Arial_Black_16;
+// const uint8_t *FONT = SystemFont5x7;
 
-// Function to scan the display
-void p10scan() {
-  p10.scanDisplayBySPI();
+const char *MESSAGE = "       WELCOME TO COMPUTER SCIENCE DEPARTMENT";
+
+SoftDMD dmd(WIDTH,1);  // DMD controls the entire display
+DMD_TextBox box(dmd);  // "box" provides a text box to automatically write to/scroll the display
+
+// the setup routine runs once when you press reset:
+void setup() {
+  Serial.begin(9600);
+  dmd.setBrightness(50);
+  // dmd.setBrightness(250);
+  dmd.selectFont(FONT);
+  dmd.begin();
 }
 
-// Function to print a string on the panels
-void printOnPanels(String inputString) {
-  char message[200];
-  inputString.toCharArray(message, 200); // Convert String to char array
-  p10.clearScreen(true); // Clear the screen
-  p10.selectFont(Arial_Black_16); // Set font
-  p10.drawMarquee(message, strlen(message), (32 * noOfColumn_panel) - 1, 0); // Draw marquee
-
-  long timer_start = millis();
-  boolean flag = false;
-  while (!flag) {
-    if ((timer_start + 30) < millis()) {
-      flag = p10.stepMarquee(-1, 0); // Scroll the marquee
-      timer_start = millis();
-    }
+// the loop routine runs over and over again forever:
+void loop() {
+  const char *next = MESSAGE;
+  while(*next) {
+    Serial.print(*next);
+    box.print(*next);
+    delay(200);
+    next++;
   }
 }
-
-void setup() {
-  // Initialize timer and DMD
-  Timer1.initialize(2000);
-  Timer1.attachInterrupt(p10scan);
-  p10.clearScreen(true);
-  Serial.begin(115200); // For debugging or additional input
-}
-
-void loop() {
-  String inputString = "WELCOME TO HAMZATRONICS TECHNOLOGIES"; // Your input string
-  printOnPanels(inputString); // Print the input string
-  delay(5000); // Wait for 5 seconds before repeating
-}
-
-
-#endif
