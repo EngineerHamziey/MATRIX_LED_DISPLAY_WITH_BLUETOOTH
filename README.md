@@ -1,4 +1,4 @@
-# Matrix LED Display for Department of Computer Science - FUNAAB**  
+# Matrix LED Display for Department of Computer Science - FUNAAB
 
 This project showcases the design and implementation of a **Matrix LED Display System** using **Arduino** and three **P10 LED panels**. The display is designed to provide dynamic, visually appealing messages and announcements for the Head of the Department of Computer Science, FUNAAB.  
 
