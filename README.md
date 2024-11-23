@@ -12,7 +12,7 @@ This repository contains the complete source code.
 
 ### Known Issues
 - **Error:** Couldn't implement Bluetooth communication for customization as the Bluetooth module is not working.  
-  - **Status:** Display functions properly despite this issue.
+- **Status:** Display functions properly despite this issue.
 
 ### Applications:
 - Department announcements.  
