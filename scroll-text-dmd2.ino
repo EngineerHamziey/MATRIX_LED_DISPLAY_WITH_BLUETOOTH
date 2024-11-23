@@ -7,14 +7,16 @@
 #include <SPI.h>
 #include <DMD2.h>
 #include <fonts/SystemFont5x7.h>
-#include <fonts/Arial14.h>
+// #include <fonts/Arial14.h>
+#include "Arial_black_16.h"
 
 // Set Width to the number of displays wide you have
 const int WIDTH = 3;
 
 // You can change to a smaller font (two lines) by commenting this line,
 // and uncommenting the line after it:
-const uint8_t *FONT = Arial14;
+// const uint8_t *FONT = Arial14;
+const uint8_t *FONT = Arial_Black_16;
 //const uint8_t *FONT = SystemFont5x7;
 
 const char *MESSAGE = "       WELCOME TO HAMZATRONICS TECHNOLOGIES";
