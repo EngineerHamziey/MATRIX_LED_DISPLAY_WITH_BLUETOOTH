@@ -17,9 +17,9 @@ const int WIDTH = 3;
 // and uncommenting the line after it:
 // const uint8_t *FONT = Arial14;
 const uint8_t *FONT = Arial_Black_16;
-//const uint8_t *FONT = SystemFont5x7;
+// const uint8_t *FONT = SystemFont5x7;
 
-const char *MESSAGE = "       WELCOME TO HAMZATRONICS TECHNOLOGIES";
+const char *MESSAGE = "       WELCOME TO COMPUTER SCIENCE DEPARTMENT";
 
 SoftDMD dmd(WIDTH,1);  // DMD controls the entire display
 DMD_TextBox box(dmd);  // "box" provides a text box to automatically write to/scroll the display
